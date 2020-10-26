@@ -9,8 +9,11 @@ f_world = RDK.Item('world', ITEM_TYPE_FRAME)
 f_pick = RDK.Item('blocks', ITEM_TYPE_FRAME)
 f_place = RDK.Item('tower', ITEM_TYPE_FRAME)
 t_home = RDK.Item('home')
+
+#Diese Position muss noch hinzugefügt werden!
 t_pickpose = RDK.Item('zwischenstopp')
 
+#Fügt alle blöcke einer Liste hinzu
 blocks = f_pick.Childs()
 
 def pick_pose_down(x, y, z, r):
@@ -36,6 +39,7 @@ def pick_and_place_cube(pose_pick_up, pose_pick_down, pose_place_up, pose_place_
     r_robot.MoveJ(t_pickpose)
 
 #Berechnet den Punkt wo der Klotz abgelegt werden muss
+#Hier bitte anpasses sonst bauen wir alle den gleichen Trum.
 def calcP1(i):
     x = 0
     y = 0
