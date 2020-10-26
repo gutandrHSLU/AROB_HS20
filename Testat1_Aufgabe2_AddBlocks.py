@@ -7,22 +7,24 @@ RDK = Robolink()
 global numberOfBlocks
 numberOfBlocks = 26 #Startwert welcher dann mit dem Fenster angepasst werden kann.
 
-blocks = []
-
-
 def RunProgram(numberOfBlocks):
-    f_blocks = RDK.Item("blocks", ITEM_TYPE_FRAME)
+    f_blocks = RDK.Item("blocks", ITEM_TYPE_FRAME) #Importiert den "Frame" wo die neuen Blöcke hingelegt werden sollen.
     for i in range(1, numberOfBlocks+1):
+        #Dieser path muss neu angepasst werden!
         newBlock = RDK.AddFile(r'C:\Users\aanng\OneDrive - Hochschule Luzern\5.Semester\AROB\Aufgaben\Testat\block.IGS', f_blocks)
+        #Hier werden die Blöcke angemalt. Jeweils ein Wert von 0 - 1 für die RGB Farben. Beispiel roter Block: newBlock.Recolor([1, 0, 0])
         newBlock.Recolor([1/numberOfBlocks*i, 0.5, 1-(1/numberOfBlocks*i)])
+        #Legt die Position des neuen Blockes fest. Abwechslungsweise oben und unten
         if i%2:
             newBlock.setPose(transl(20 + (i-1)*15, 65, 7.75) * rotz(90*pi/180))
         else:
             newBlock.setPose(transl(20 + (i-2)*15, 190, 7.75) * rotz(90*pi/180))
-        blocks.append(newBlock.setName("block" + str(i)))
+        #Benennt den neuen Block
+        newBlock.setName("block" + str(i))
     RDK.Finish()
 
 
+#Ab hier ist alles aus einem Beispiel kopiert
 # Set up default parameters
 PROGRAM_NAME = "Test"     # Name of the program
 
@@ -47,3 +49,4 @@ Button(root, text='Add blocks', command=ExecuteChoice).pack()
 
 # Important to display the graphical user interface
 root.mainloop()
+
