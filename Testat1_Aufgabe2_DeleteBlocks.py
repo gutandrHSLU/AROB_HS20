@@ -9,8 +9,7 @@ r_robot.setJoints([0, 0, 90, 0, 0, 0])
 
 
 def cleanup_blocks(parent):
-    """Deletes all child items whose name starts with \"ball\", from the provided list of parent items."""
-    for item in parent.Childs():
+    for item in parent.Childs(): #deletes all objects which are linked to the parent
         item.Delete()
 
 cleanup_blocks(f_blocks)
